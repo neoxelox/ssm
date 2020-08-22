@@ -42,7 +42,7 @@ case ssm.ErrEncryptionFailed:
 jsonData := []byte(`
     {
         "public": {
-        "version": "0.1.0",
+        "version": "0.1.1",
         "encryption": "AES",
         "metadata": {
             "color": "6463fb",
@@ -90,7 +90,7 @@ if err != nil {
 }
 ```
 
-See [`GoDev`](https://github.com/neoxelox/ssm) for further documentation.
+See [`GoDev`](https://pkg.go.dev/github.com/neoxelox/ssm) for further documentation.
 
 ## Models
 ```yaml

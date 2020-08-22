@@ -1,18 +1,18 @@
-// Package ssm implements functions to deal with secure secret management.
-package ssm
+package ssm_test
 
 import (
 	"encoding/json"
 	"fmt"
 	"time"
 
+	"github.com/neoxelox/ssm"
 	"github.com/neoxelox/ssm/cipher"
 )
 
 // Example: create a simple Fact and hide it
 func ExampleCreate_Simple() {
-	fact, err := Create(cipher.Ciphers.Aes, nil)
-	if err == ErrEncryptionNotSupported {
+	fact, err := ssm.Create(cipher.Ciphers.Aes, nil)
+	if err == ssm.ErrEncryptionNotSupported {
 		// Do something
 		return
 	}
@@ -33,10 +33,10 @@ func ExampleCreate_Simple() {
 
 	secret, err := fact.Hide("AwesomeKey")
 	switch err {
-	case ErrEncryptionNotSupported:
+	case ssm.ErrEncryptionNotSupported:
 		// Do something
 		return
-	case ErrEncryptionFailed:
+	case ssm.ErrEncryptionFailed:
 		// Do something
 		return
 	}
@@ -52,7 +52,7 @@ func ExampleCreate_Simple() {
 	// Output:
 	// {
 	//   "public": {
-	// 	   "version": "0.1.0",
+	// 	   "version": "0.1.1",
 	// 	   "encryption": "AES",
 	// 	   "metadata": {
 	// 	     "color": "6463fb",
@@ -67,8 +67,8 @@ func ExampleCreate_Simple() {
 
 // Example: create a Fact with several secrets and Hide it
 func ExampleCreate_Composed() {
-	childFact, err := Create(cipher.Ciphers.Aes, nil)
-	if err == ErrEncryptionNotSupported {
+	childFact, err := ssm.Create(cipher.Ciphers.Aes, nil)
+	if err == ssm.ErrEncryptionNotSupported {
 		// Do something
 		return
 	}
@@ -89,10 +89,10 @@ func ExampleCreate_Composed() {
 
 	childSecret, err := childFact.Hide("AwesomeKey")
 	switch err {
-	case ErrEncryptionNotSupported:
+	case ssm.ErrEncryptionNotSupported:
 		// Do something
 		return
-	case ErrEncryptionFailed:
+	case ssm.ErrEncryptionFailed:
 		// Do something
 		return
 	}
@@ -103,8 +103,8 @@ func ExampleCreate_Composed() {
 		return
 	}
 
-	parentFact, err := Create(cipher.Ciphers.Aes, nil)
-	if err == ErrEncryptionNotSupported {
+	parentFact, err := ssm.Create(cipher.Ciphers.Aes, nil)
+	if err == ssm.ErrEncryptionNotSupported {
 		// Do something
 		return
 	}
@@ -113,10 +113,10 @@ func ExampleCreate_Composed() {
 
 	parentSecret, err := parentFact.Hide("BreathtakingKey")
 	switch err {
-	case ErrEncryptionNotSupported:
+	case ssm.ErrEncryptionNotSupported:
 		// Do something
 		return
-	case ErrEncryptionFailed:
+	case ssm.ErrEncryptionFailed:
 		// Do something
 		return
 	}
@@ -131,7 +131,7 @@ func ExampleCreate_Composed() {
 	// Output:
 	// {
 	//   "public": {
-	// 	   "version": "0.1.0",
+	// 	   "version": "0.1.1",
 	// 	   "encryption": "AES",
 	// 	   "metadata": null
 	// 	 },
@@ -145,7 +145,7 @@ func ExampleParse() {
 	jsonData := []byte(`
 	    {
 		  "public": {
-		    "version": "0.1.0",
+		    "version": "0.1.1",
 		    "encryption": "AES",
 		    "metadata": {
 			  "color": "6463fb",
@@ -158,21 +158,21 @@ func ExampleParse() {
 	    }	  
 	`)
 
-	secret, err := Parse(jsonData)
-	if err == ErrNotASecret {
+	secret, err := ssm.Parse(jsonData)
+	if err == ssm.ErrNotASecret {
 		// Do something
 		return
 	}
 
 	fact, err := secret.Tell("AwesomeKey")
 	switch err {
-	case ErrEncryptionNotSupported:
+	case ssm.ErrEncryptionNotSupported:
 		// Do something
 		return
-	case ErrDecryptionFailed:
+	case ssm.ErrDecryptionFailed:
 		// Do something
 		return
-	case ErrChecksumMismatch:
+	case ssm.ErrChecksumMismatch:
 		// Do something
 		return
 	}

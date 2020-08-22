@@ -1,3 +1,4 @@
+// Package ssm implements functions to deal with secure secret management.
 package ssm
 
 import (
@@ -7,7 +8,7 @@ import (
 )
 
 // VERSION describes the ssm version
-const VERSION = "0.1.0"
+const VERSION = "0.1.1"
 
 var incompatibleVersions = []string{}
 var cipherStore *cipher.Store
