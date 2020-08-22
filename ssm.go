@@ -8,7 +8,7 @@ import (
 )
 
 // VERSION describes the ssm version
-const VERSION = "0.1.1"
+const VERSION = "0.1.2"
 
 var incompatibleVersions = []string{}
 var cipherStore *cipher.Store

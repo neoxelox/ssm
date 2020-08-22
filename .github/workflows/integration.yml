@@ -1,0 +1,29 @@
+name: Integration
+
+on:
+    push:
+        tags:
+            - 'v*.*.*'
+
+jobs:
+    deployment:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout 🛎️
+            uses: actions/checkout@master
+            with:
+                persist-credentials: false
+
+            - name: Setup Go 🐻
+            uses: actions/setup-go@v2
+            with:
+                go-version: '1.14.1'
+
+            - name: Test 🧪
+            run: go version
+
+            - name: Publish 🚀
+            run: |
+                echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
+                curl https://sum.golang.org/lookup/github.com/neoxelox/ssm@${{ env.RELEASE_VERSION }}
+                curl https://proxy.golang.org/github.com/neoxelox/ssm/@v/${{ env.RELEASE_VERSION }}.info

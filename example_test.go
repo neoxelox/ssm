@@ -10,7 +10,7 @@ import (
 )
 
 // Example: create a simple Fact and hide it
-func ExampleCreate_Simple() {
+func ExampleCreate_simple() {
 	fact, err := ssm.Create(cipher.Ciphers.Aes, nil)
 	if err == ssm.ErrEncryptionNotSupported {
 		// Do something
@@ -52,7 +52,7 @@ func ExampleCreate_Simple() {
 	// Output:
 	// {
 	//   "public": {
-	// 	   "version": "0.1.1",
+	// 	   "version": "0.1.2",
 	// 	   "encryption": "AES",
 	// 	   "metadata": {
 	// 	     "color": "6463fb",
@@ -66,7 +66,7 @@ func ExampleCreate_Simple() {
 }
 
 // Example: create a Fact with several secrets and Hide it
-func ExampleCreate_Composed() {
+func ExampleCreate_composed() {
 	childFact, err := ssm.Create(cipher.Ciphers.Aes, nil)
 	if err == ssm.ErrEncryptionNotSupported {
 		// Do something
@@ -128,10 +128,11 @@ func ExampleCreate_Composed() {
 	}
 
 	fmt.Println(string(parentSecretJSON))
+
 	// Output:
 	// {
 	//   "public": {
-	// 	   "version": "0.1.1",
+	// 	   "version": "0.1.2",
 	// 	   "encryption": "AES",
 	// 	   "metadata": null
 	// 	 },
@@ -145,7 +146,7 @@ func ExampleParse() {
 	jsonData := []byte(`
 	    {
 		  "public": {
-		    "version": "0.1.1",
+		    "version": "0.1.2",
 		    "encryption": "AES",
 		    "metadata": {
 			  "color": "6463fb",

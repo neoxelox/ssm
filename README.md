@@ -1,4 +1,4 @@
-# ssm
+# ssm ![Integration](https://github.com/Neoxelox/ssm/workflows/Integration/badge.svg)
 **🔐 `Secure Secret Management` 🔐**
 
 ## What
@@ -42,7 +42,7 @@ case ssm.ErrEncryptionFailed:
 jsonData := []byte(`
     {
         "public": {
-        "version": "0.1.1",
+        "version": "0.1.2",
         "encryption": "AES",
         "metadata": {
             "color": "6463fb",

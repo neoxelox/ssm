@@ -3,18 +3,18 @@ package ssm
 import "errors"
 
 var (
-	// ErrEncryptionNotSupported ...
+	// ErrEncryptionNotSupported : encryption not supported
 	ErrEncryptionNotSupported = errors.New("encryption not supported")
 
-	// ErrEncryptionFailed ...
+	// ErrEncryptionFailed : encryption failed
 	ErrEncryptionFailed = errors.New("encryption failed")
 
-	// ErrDecryptionFailed ...
+	// ErrDecryptionFailed : decryption failed
 	ErrDecryptionFailed = errors.New("decryption failed")
 
-	// ErrChecksumMismatch ...
+	// ErrChecksumMismatch : private and protected checksums do not match
 	ErrChecksumMismatch = errors.New("checksums do not match")
 
-	// ErrNotASecret ...
+	// ErrNotASecret : input is not a secret
 	ErrNotASecret = errors.New("input is not a secret")
 )

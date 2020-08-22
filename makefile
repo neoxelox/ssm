@@ -8,6 +8,7 @@ test:
 	grep -Po "[0-9]+\.[0-9]+(?=%)" coverage.out | awk '{ SUM += $$1; PKGS += 1} END { print "  Total Coverage (" PKGS " pkg/s) : " SUM/PKGS "%"}'
 	echo "=====================================\e[0m"
 	rm -f coverage.out
+.PHONY: test
 .SILENT: test
 
 cover:
