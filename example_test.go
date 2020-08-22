@@ -52,7 +52,7 @@ func ExampleCreate_simple() {
 	// Output:
 	// {
 	//   "public": {
-	// 	   "version": "0.1.2",
+	// 	   "version": "0.1.3",
 	// 	   "encryption": "AES",
 	// 	   "metadata": {
 	// 	     "color": "6463fb",
@@ -132,7 +132,7 @@ func ExampleCreate_composed() {
 	// Output:
 	// {
 	//   "public": {
-	// 	   "version": "0.1.2",
+	// 	   "version": "0.1.3",
 	// 	   "encryption": "AES",
 	// 	   "metadata": null
 	// 	 },
@@ -146,7 +146,7 @@ func ExampleParse() {
 	jsonData := []byte(`
 	    {
 		  "public": {
-		    "version": "0.1.2",
+		    "version": "0.1.3",
 		    "encryption": "AES",
 		    "metadata": {
 			  "color": "6463fb",

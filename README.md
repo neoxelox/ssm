@@ -42,7 +42,7 @@ case ssm.ErrEncryptionFailed:
 jsonData := []byte(`
     {
         "public": {
-        "version": "0.1.2",
+        "version": "0.1.3",
         "encryption": "AES",
         "metadata": {
             "color": "6463fb",
