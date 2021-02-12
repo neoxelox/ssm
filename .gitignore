@@ -1,6 +1,7 @@
 # Owm
 test/
 notes.md
+.vscode/
 
 # Binaries for programs and plugins
 *.exe

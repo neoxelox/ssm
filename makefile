@@ -5,7 +5,7 @@ DEVTOOLS ?= $(shell $(GOPATH)/bin/golangci-lint --version 2>/dev/null | grep 1.2
 test:
 	go test -race -count=1 $(FLAGS) $(PACKAGES) -cover | tee coverage.out
 	echo "\e[1m====================================="
-	grep -Po "[0-9]+\.[0-9]+(?=%)" coverage.out | awk '{ SUM += $$1; PKGS += 1} END { print "  Total Coverage (" PKGS " pkg/s) : " SUM/PKGS "%"}'
+	grep -Po "[0-9]+\.[0-9]+(?=%)" coverage.out | awk '{ SUM += $$1; PKGS += 1} END { if (PKGS) { print "  Total Coverage (" PKGS " pkg/s) : " SUM/PKGS "%" } else { print "  No Packages" } }'
 	echo "=====================================\e[0m"
 	rm -f coverage.out
 .PHONY: test
@@ -23,7 +23,7 @@ lint: devtools
 devtools:
 ifeq ($(strip $(DEVTOOLS)),)
 	echo "\e[1mDEVTOOLS not present, installing...\e[0m"
-	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(GOPATH)/bin v1.24.0
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sudo sh -s -- -b $(GOPATH)/bin v1.24.0
 endif
 .SILENT: devtools
 
