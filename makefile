@@ -5,7 +5,7 @@ DEVTOOLS ?= $(shell $(GOPATH)/bin/golangci-lint --version 2>/dev/null | grep 1.2
 test:
 	go test -race -count=1 $(FLAGS) $(PACKAGES) -cover | tee coverage.out
 	echo "\e[1m====================================="
-	grep -Po "[0-9]+\.[0-9]+(?=%)" coverage.out | awk '{ SUM += $$1; PKGS += 1} END { if (PKGS) { print "  Total Coverage (" PKGS " pkg/s) : " SUM/PKGS "%" } else { print "  No Packages" } }'
+	grep -Po "[0-9]+\.[0-9]+(?=%)" coverage.out | awk '{ SUM += $$1; PKGS += 1 } END { if (PKGS) { print "  Total Coverage (" PKGS " pkg/s) : " SUM/PKGS "%" } else { print "              No Tests" } }'
 	echo "=====================================\e[0m"
 	rm -f coverage.out
 .PHONY: test
